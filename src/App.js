@@ -1,16 +1,15 @@
 import './App.css';
-import React from 'react';
-import Signup from './Component/Signup';
+import Homepage from './Homepage/homepage';
+import Signup from './Component/Signup'
 import Login from './Component/Login';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>
-          MY name
-          <Signup />
-          <Login />
-        </h1>
+      <header >
+      <Homepage />
+      <a href="/login">Login</a>
+      <a href="/signup">Signup</a>
+      <h1>Hiiii</h1>
       </header>
     </div>
   );
