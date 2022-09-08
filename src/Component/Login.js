@@ -49,7 +49,6 @@ const Login = () => {
                   required
                 />
               </div>
-              <br />
               <div className="form">
               <label htmlFor="pasword" className="form__label">
                   Password

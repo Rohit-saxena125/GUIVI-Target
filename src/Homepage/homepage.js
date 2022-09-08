@@ -8,9 +8,15 @@ const homepage = () => {
         <>
         <Router>
         <Switch>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" >
+            <Login />
+        </Route>
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/additionalDetails" component={AdditionalDetails} />
+        <Route exact path="/additionalDetails" >
+             <AdditionalDetails />
+            
+        </Route>
+
         </Switch>
         </Router>
         </>

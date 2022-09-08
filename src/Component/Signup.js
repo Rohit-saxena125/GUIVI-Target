@@ -19,11 +19,16 @@ const Signup = () => {
   const signup = ()=>
   {
     const{username,email,password,confirmpassword} = userRegister;
+    if(username && email && password && (confirmpassword === password)){
     axios.post('http://localhost:9000/signup',userRegister).then((res)=>
       {
         alert(res.data.message);
         history.push('/');
-      })
+      })}
+      else
+      {
+        alert("invalid input");
+      }
     }
   return (
     <>
