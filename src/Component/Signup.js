@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import {useHistory} from 'react-router-dom';
+import Logo from '../constatnts/logo.png';
 const Signup = () => {
+  let history = useHistory();
   const [userRegister, setUserRegister] = useState({
     username: "",
-    email: "",
+    email : "",
     password: "",
-    Confirmpassword: "",
+    confirmpassword: "",
   });
   const handleInput = (e) => {
     const name = e.target.name;
@@ -17,14 +20,15 @@ const Signup = () => {
       <section className="loginsection register-section ">
         <div className="container grid grid-two-column">
           <div className="login-data register-data">
-           <span>
-            <label>
-              Signup
-            </label>
-           </span>
+            <span>
+              <label>Signup</label>
+              <a class="navbar-brand" href="#">
+         <img src={Logo} />
+        </a>
+            </span>
             <form action="#">
-              <div className="form">
-              <label htmlFor="username" className="form__label">
+              <div className="form" >
+                <label htmlFor="username" className="form__label">
                   User Name
                 </label>
                 <input
@@ -38,8 +42,9 @@ const Signup = () => {
                   required
                 />
               </div>
+              <br />
               <div className="form">
-              <label htmlFor="email" className="form__label">
+                <label htmlFor="email" className="form__label">
                   E-mail
                 </label>
                 <input
@@ -47,14 +52,15 @@ const Signup = () => {
                   id="email"
                   className="form__input"
                   placeholder="Enter your email"
-                  name="E-mail"
+                  name="email"
                   value={userRegister.email}
                   onChange={handleInput}
                   required
                 />
               </div>
+              <br />
               <div className="form">
-              <label htmlFor="pasword" className="form__label">
+                <label htmlFor="pasword" className="form__label">
                   Pasword
                 </label>
                 <input
@@ -62,15 +68,15 @@ const Signup = () => {
                   id="pasword"
                   className="form__input"
                   placeholder="Enter your password"
-                  name="Enter your password"
+                  name="password"
                   value={userRegister.password}
                   onChange={handleInput}
                   required
                 />
               </div>
-
+              <br />
               <div className="form">
-              <label htmlFor="Confirm password" className="form__label">
+                <label htmlFor="Confirm password" className="form__label">
                   Confirm Password
                 </label>
                 <input
@@ -79,16 +85,20 @@ const Signup = () => {
                   className="form__input"
                   placeholder="Enter your password"
                   name="confirmpassword"
-                  value={userRegister.Confirmpassword}
+                  value={userRegister.confirmpassword}
                   onChange={handleInput}
                   required
                 />
               </div>
-              <input
-                type="submit"
-                value="REGISTER"
-                className="btn register-btn"
-              />
+              <br />
+              <div className="form">
+                <button className="btn btn-primary"onClick={()=>{history.push("/")}}>
+                  <strong>Signup</strong>
+                </button>
+              </div>
+              <div>
+                <p>account already exist?<a href="/">Login</a></p>
+              </div>
             </form>
           </div>
         </div>
