@@ -28,23 +28,14 @@ const AdditionalDetails =()=> {
       });
   };
   return (
-    <section>
-      <div className="login">
+    <section className="login">
+      <div >
         <span>
           <a class="navbar-brand" href="#">
             <img src={Logo} />
           </a>
         </span>
         <h1>Profile Page</h1>
-        <div>
-          {/* fetch username from database */}
-          <form action=""method="post">
-            <label htmlFor="username">Username</label>
-            {/* print username from database */}
-            <label htmlFor="email">Email</label>
-            {/* print username from database */}
-          </form>
-        
         <button className="btn btn-primary button" onClick={logout}>Logout</button>
       </div>
       <div className="AdditionalDetails">
@@ -74,20 +65,9 @@ const AdditionalDetails =()=> {
             <label htmlFor="gender">Gender</label>
             <div>
               <span>
-                <label>Male</label>
-                <input type="radio" id="gender" name="gender" 
-                value={userDetails.gender}
-                onChange={handleInput}
-                />
-              </span>
-              <span>
-                <label>Female</label>
-                <input type="radio" id="gender" name="gender"value={userDetails.gender}
-                onChange={handleInput} />
-              </span>
-              <span>
-                <label>Other</label>
-                <input type="radio" id="gender" name="gender"value={userDetails.gender}
+                <input type="text" id="gender" 
+                className="form-control"
+                name="gender"value={userDetails.gender}
                 onChange={handleInput} />
               </span>
             </div>
@@ -103,11 +83,10 @@ const AdditionalDetails =()=> {
             />
           </div>
           <br />
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="btn btn-primary" onClick={submit}>
             Submit
           </button>
         </form>
-      </div>
       </div>
     </section>
   );
