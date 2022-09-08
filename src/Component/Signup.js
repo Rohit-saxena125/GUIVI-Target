@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import {useHistory} from 'react-router-dom';
 import Logo from '../constatnts/logo.png';
+import '../CSS/signup.css';
+import axios from "axios";
 const Signup = () => {
-  let history = useHistory();
+  const history = useHistory();
   const [userRegister, setUserRegister] = useState({
     username: "",
     email : "",
@@ -10,18 +12,26 @@ const Signup = () => {
     confirmpassword: "",
   });
   const handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
+    const {name,value} = e.target;
 
     setUserRegister({ ...userRegister, [name]: value });
   };
+  const signup = ()=>
+  {
+    const{username,email,password,confirmpassword} = userRegister;
+    axios.post('http://localhost:9000/signup',userRegister).then((res)=>
+      {
+        alert(res.data.message);
+        history.push('/');
+      })
+    }
   return (
     <>
+    {console.log("User",userRegister)}
       <section className="loginsection register-section ">
-        <div className="container grid grid-two-column">
+        <div className="register">
           <div className="login-data register-data">
             <span>
-              <label>Signup</label>
               <a class="navbar-brand" href="#">
          <img src={Logo} />
         </a>
@@ -42,7 +52,6 @@ const Signup = () => {
                   required
                 />
               </div>
-              <br />
               <div className="form">
                 <label htmlFor="email" className="form__label">
                   E-mail
@@ -58,10 +67,9 @@ const Signup = () => {
                   required
                 />
               </div>
-              <br />
               <div className="form">
-                <label htmlFor="pasword" className="form__label">
-                  Pasword
+                <label htmlFor="password" className="form__label">
+                  Password
                 </label>
                 <input
                   type="password"
@@ -74,7 +82,6 @@ const Signup = () => {
                   required
                 />
               </div>
-              <br />
               <div className="form">
                 <label htmlFor="Confirm password" className="form__label">
                   Confirm Password
@@ -90,9 +97,8 @@ const Signup = () => {
                   required
                 />
               </div>
-              <br />
               <div className="form">
-                <button className="btn btn-primary"onClick={()=>{history.push("/")}}>
+                <button className="btn btn-primary button"onClick={signup}>
                   <strong>Signup</strong>
                 </button>
               </div>

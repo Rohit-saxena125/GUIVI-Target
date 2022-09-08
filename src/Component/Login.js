@@ -1,29 +1,35 @@
 import React, { useState } from "react";
 import {useHistory} from 'react-router-dom';
 import Logo from '../constatnts/logo.png';
+import axios from "axios";
+import '../CSS/loginpage.css';
 const Login = () => {
   const [userLogin, setUserLogin] = useState({
     email: "",
     password: "",
   });
   const handleInput = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
+    const {name,value} = e.target;
     setUserLogin({ ...userLogin, [name]: value });
   };
   let history = useHistory();
-
+  const login = ()=>
+  {
+    const{email,password} = userLogin;
+    axios.post('http://localhost:9000/login',userLogin).then((res)=>
+    {
+      alert(res.data.message);
+      setUserLogin(res.data.userLogin)
+      history.push('/additionalDetails');
+    })
+  }
   return (
     <>
       <section className="loginsection section ">
-        <div className="container grid grid-two-column">
+        <div className="login">
           <div className="login-data">
             <form action="#" className="login-form">
             <span>
-            <label>
-              Login
-            </label>
             <a class="navbar-brand" href="#">
          <img src={Logo} />
         </a>
@@ -70,7 +76,7 @@ const Login = () => {
                 </a>
               </div>
               <br />
-              <button className="btn btn-primary"onClick={()=>{history.push("/additionalDetails")}}><strong>Login</strong></button>
+              <button className="btn btn-primary button"onClick={login}><strong>Login</strong></button>
             <div>
             <br />
             <p className="common-para">
