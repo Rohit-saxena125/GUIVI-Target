@@ -2,11 +2,14 @@ import React ,{useState}from "react";
 import { useHistory } from "react-router-dom";
 import Logo from "../constatnts/logo.png";
 import "../CSS/loginpage.css";
+import log from '../Component/Login';
+
 import axios from "axios";
 const AdditionalDetails =()=> {
   let username = JSON.parse(localStorage.getItem("user"));
   const history = useHistory();
   const [userDetails, setUserDetails] = useState({
+    username:username,
     age:"",
     dob:"",
     gender:"",
@@ -21,7 +24,8 @@ const AdditionalDetails =()=> {
     history.push("/");
   };
   const submit = () => {
-    const {age,dob,gender,phone} = userDetails;
+    const {username,age,dob,gender,phone} = userDetails;
+    console.log(userDetails);
       axios.post("http://localhost:9000/additionalDetails", userDetails).then((res) => {
         alert(res.data.message);
         history.push("/additionalDetails");
