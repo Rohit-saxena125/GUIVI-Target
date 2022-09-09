@@ -20,7 +20,7 @@ const Login = () => {
     {
       alert(res.data.message);
       setUserLogin(res.data.userLogin)
-      history.push('/additionalDetails');
+      history.push('/additionalDetails/${email}');
     })
   }
   return (

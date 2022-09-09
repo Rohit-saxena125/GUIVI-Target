@@ -1,15 +1,14 @@
 import React ,{useState}from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory ,useParams} from "react-router-dom";
 import Logo from "../constatnts/logo.png";
 import "../CSS/loginpage.css";
-import log from '../Component/Login';
-
 import axios from "axios";
-const AdditionalDetails =()=> {
+const AdditionalDetails =(props)=> {
   let username = JSON.parse(localStorage.getItem("user"));
   const history = useHistory();
+  const {email} = useParams();
   const [userDetails, setUserDetails] = useState({
-    username:username,
+    email:{email},
     age:"",
     dob:"",
     gender:"",
@@ -24,13 +23,14 @@ const AdditionalDetails =()=> {
     history.push("/");
   };
   const submit = () => {
-    const {username,age,dob,gender,phone} = userDetails;
+    const {email,age,dob,gender,phone} = userDetails;
     console.log(userDetails);
       axios.post("http://localhost:9000/additionalDetails", userDetails).then((res) => {
         alert(res.data.message);
         history.push("/additionalDetails");
       });
   };
+  
   return (
     <section className="login">
       <div >
@@ -42,6 +42,7 @@ const AdditionalDetails =()=> {
         <h1>Profile Page</h1>
         <button className="btn btn-primary button" onClick={logout}>Logout</button>
       </div>
+      <p>email:{email}</p>
       <div className="AdditionalDetails">
         <h1>Additional Details</h1>
         <form action="/AdditionalDetails" method="POST">

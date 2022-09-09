@@ -9,10 +9,10 @@ const homepage = () => {
         <Router>
         <Switch>
         <Route exact path="/" >
-            <Login />
+            <Login email={email}/>
         </Route>
         <Route exact path="/signup" component={Signup} />
-        <Route exact path="/additionalDetails" >
+        <Route exact path="/additionalDetails/:email" >
              <AdditionalDetails />
             
         </Route>
